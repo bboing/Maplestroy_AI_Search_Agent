@@ -1,7 +1,7 @@
 # LangChain AI Platform - Python 의존성 (참고용)
 # 
-# ⚠️ 주의: 이 파일은 참고용입니다.
-# 실제로는 상위 디렉토리의 requirements.txt를 사용하세요.
+# 이 파일은 참고용입니다.
+# 상위 디렉토리의 requirements.txt만 사용 중입니다.
 #
 # 설치 방법:
 #   cd ..  # taegyun_nexon_pj 디렉토리로 이동
