@@ -1,0 +1,56 @@
+# Docker 빌드 시 제외할 파일/폴더
+
+# 가상환경
+nexon_venv/
+venv/
+env/
+.venv/
+
+# 캐시
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Git
+.git/
+.gitignore
+
+# Docker
+Dockerfile*
+docker-compose*.yml
+.dockerignore
+
+# 로그
+*.log
+logs/
+
+# 데이터 (이미 볼륨 마운트)
+training/
+*.db
+*.sqlite
+
+# 문서 (런타임 불필요)
+*.md
+docs/
+
+# 테스트
+tests/
+.pytest_cache/
+
+# OS
+.DS_Store
+Thumbs.db

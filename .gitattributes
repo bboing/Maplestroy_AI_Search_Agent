@@ -1,0 +1,18 @@
+# SQL files should use LF line endings
+*.sql text eol=lf
+
+# Python files
+*.py text eol=lf
+
+# Shell scripts
+*.sh text eol=lf
+
+# Markdown
+*.md text eol=lf
+
+# YAML
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# Environment files
+.env* text eol=lf

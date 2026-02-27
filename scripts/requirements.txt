@@ -1,0 +1,10 @@
+# Scripts 전용 의존성 (참고용)
+# 
+# ⚠️ 주의: 이 파일은 참고용입니다.
+# 실제로는 상위 디렉토리의 requirements.txt를 사용하세요.
+#
+# 설치 방법:
+#   cd ..  # taegyun_nexon_pj 디렉토리로 이동
+#   pip install -r requirements.txt
+#
+# 스크립트 실행에 필요한 의존성은 모두 ../requirements.txt에 포함되어 있습니다.

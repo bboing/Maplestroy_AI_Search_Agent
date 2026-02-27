@@ -1,0 +1,1390 @@
+[
+  {
+    "canonical_name": "리스항구",
+    "category": "MAP",
+    "synonyms": ["리스", "항구 마을", "Lith Harbor"],
+    "description": "빅토리아 아일랜드의 입구. 하얀 석조 건물과 푸른 바다가 매력적인 평화로운 마을입니다.",
+    "detail_data": {
+      "category": "MAP",
+      "map_type": "TOWN",
+      "region": "빅토리아 아일랜드",
+      "bgm": "Above the Treetops",
+      "description": "빅토리아 아일랜드에 도착한 모험가들이 처음 마주하는 마을입니다. 마을 오른쪽 언덕을 넘어가면 본격적인 모험의 필드가 시작됩니다.",
+      "adjacent_maps": [
+          {
+            "target_map": "리스항구 외곽",
+            "direction": "BOTTOM_RIGHT",
+            "portal_name": "리스항구 동쪽 경계",
+            "location_context": "마을 오른쪽 끝",
+            "portal_type": "REGULAR",
+            "description": "여섯갈래길(또는 세갈래길)로 향하는 첫 번째 필드입니다. 초보 모험가들을 위한 달팽이들이 주로 서식합니다."
+          }
+      ],
+      "special_portals": [
+          {
+            "target_region": "빅토리아 아일랜드 전역",
+            "portal_type": "TAXI",
+            "portal_name": "중형 택시",
+            "location_context": "마을 중앙 선착장 부근",
+            "description": "일정 메소를 내고 헤네시스, 엘리니아, 페리온, 커닝시티 마을로 즉시 이동합니다. (초보자 할인 적용)"
+          },
+          {
+            "target_region": "플로리다 비치",
+            "portal_type": "NPC_TRANSPORT",
+            "portal_name": "페이슨의 낡은 배",
+            "location_context": "마을 중앙 하단",
+            "cost": 2000,
+            "description": "NPC 페이슨을 통해 열대 섬인 플로리다 비치로 이동합니다."
+          }
+      ],
+      "resident_npcs": ["루카스", "미나", "테오", "김서방", "쿤", "제인", "페이슨"],
+      "resident_monsters": [],
+      "features": [
+        "창고 (김서방)",
+        "항구 잡화 상점 (미나)",
+        "항구 방어구 상점",
+        "전직관 마을행 택시",
+        "플로리다 비치 이동"
+      ],
+      "min_level": 0,
+      "recommended_level_range": null,
+      "is_safe_zone": true,
+      "required_quest": null,
+      "star_force_limit": 0,
+      "arcane_power_limit": 0
+    }
+  },
+  {
+    "canonical_name": "리스항구 외곽",
+    "category": "MAP",
+    "synonyms": ["리스 외곽", "리스항구 동쪽 경계", "Lith Harbor Outskirts"],
+    "description": "리스항구와 여섯갈래길을 잇는 완만한 언덕길. 초보 모험가들이 처음으로 전투를 경험하는 장소입니다.",
+    "detail_data": {
+      "category": "MAP",
+      "map_type": "FIELD",
+      "region": "빅토리아 아일랜드",
+      "bgm": "Above the Treetops",
+      "description": "빅토리아 아일랜드의 평화로운 분위기가 이어지는 사냥터입니다. 리스항구에서 모험을 시작한 이들이 가장 먼저 거쳐가는 통로이며, 위협적이지 않은 하급 몬스터들이 주로 서식합니다.",
+      "adjacent_maps": [
+          {
+            "target_map": "리스항구",
+            "direction": "TOP_LEFT",
+            "portal_name": "리스항구 동쪽 경계",
+            "location_context": "맵 왼쪽 끝 언덕 위",
+            "portal_type": "REGULAR",
+            "description": "하얀 석조 건물이 보이는 리스항구 마을로 되돌아갑니다."
+          },
+          {
+            "target_map": "뭐였드라",
+            "direction": "BOTTOM_RIGHT",
+            "portal_name": "여섯갈래길 방면 포탈",
+            "location_context": "맵 오른쪽 하단 끝",
+            "portal_type": "REGULAR",
+            "description": "기억이 안납니다."
+          }
+      ],
+      "special_portals": [],
+      "resident_npcs": [],
+      "resident_monsters": ["달팽이", "파란 달팽이", "빨간 달팽이", "스포아", "스텀프"],
+      "features": [
+        "초보자 사냥터",
+        "여섯갈래길로 이어지는 주요 길목",
+        "낮은 난이도의 몬스터 분포"
+      ],
+      "min_level": 0,
+      "recommended_level_range": [5, 12],
+      "is_safe_zone": false,
+      "required_quest": null,
+      "star_force_limit": 0,
+      "arcane_power_limit": 0
+    }
+  },
+  {
+    "canonical_name": "여섯갈래길",
+    "category": "MAP",
+    "synonyms": [
+      "여섯갈래",
+      "허브",
+      "디멘션 게이트"
+    ],
+    "description": "빅토리아 아일랜드의 모든 길이 모이는 곳",
+    "detail_data": {
+      "category": "MAP",
+      "map_type": "TRANSIT",
+      "region": "빅토리아 아일랜드",
+      "bgm": "Go Picnic",
+      "description": "각 마을과 정거장으로 연결되는 중심지입니다.",
+      "adjacent_maps": [
+        {
+          "target_map": "헤네시스",
+          "direction": "BOTTOM_LEFT"
+        },
+        {
+          "target_map": "리스항구",
+          "direction": "MID_LEFT"
+        },
+        {
+          "target_map": "커닝시티",
+          "direction": "TOP_LEFT"
+        },
+        {
+          "target_map": "엘리니아",
+          "direction": "MID_RIGHT"
+        },
+        {
+          "target_map": "페리온",
+          "direction": "TOP_RIGHT"
+        },
+        {
+          "target_map": "슬리피우드",
+          "direction": "BOTTOM_CENTER",
+          "description": "중앙 하단 거대나무 구멍"
+        },
+        {
+          "target_map": "노틸러스",
+          "direction": "BOTTOM_RIGHT"
+        }
+      ],
+      "special_portals": [
+        {
+          "target_region": "판테온",
+          "portal_type": "DIMENSION_GATE",
+          "description": "그란디스로 이어지는 차원의 문"
+        },
+        {
+          "target_region": "오르비스",
+          "portal_type": "STATION",
+          "description": "승강장 위쪽 정거장"
+        }
+      ],
+      "resident_npcs": [
+        "조종사 어빈",
+        "슈리"
+      ],
+      "resident_monsters": [],
+      "features": [
+        "대륙 이동 승강장",
+        "디멘션 게이트"
+      ],
+      "min_level": 0,
+      "recommended_level_range": null,
+      "is_safe_zone": true,
+      "required_quest": null,
+      "star_force_limit": 0,
+      "arcane_power_limit": 0
+    }
+  },
+  {
+    "canonical_name": "헤네시스",
+    "category": "MAP",
+    "synonyms": [
+      "헤네",
+      "버섯마을",
+      "궁수 마을"
+    ],
+    "description": "궁수들의 고향이자 평화로운 버섯 마을",
+    "detail_data": {
+      "category": "MAP",
+      "map_type": "TOWN",
+      "region": "빅토리아 아일랜드",
+      "bgm": "Searching for Happiness",
+      "description": "완만한 언덕 위에 세워진 아름다운 마을입니다. 궁수로 전직하기 위해 반드시 와야하는 마을입니다.",
+      "adjacent_maps": [
+        {
+          "target_map": "헤네시스 사냥터",
+          "direction": "BOTTOM_LEFT"
+        },
+        {
+          "target_map": "던전으로 가는 길",
+          "direction": "TOP_RIGHT"
+        },
+        {
+          "target_map": "골렘의 사원",
+          "direction": "BOTTOM_RIGHT"
+        }
+      ],
+      "special_portals": [
+        {
+          "target_region": "헤네시스 시장",
+          "portal_type": "REGULAR"
+        }
+      ],
+      "resident_npcs": [
+        "장로스탄",
+        "리나",
+        "브루스",
+        "밍밍부인",
+        "카밀라"
+      ],
+      "resident_monsters": [],
+      "features": [
+        "자유시장",
+        "궁수 전직",
+        "미용실",
+        "성형외과"
+      ],
+      "min_level": 0,
+      "recommended_level_range": null,
+      "is_safe_zone": true,
+      "required_quest": null,
+      "star_force_limit": 0,
+      "arcane_power_limit": 0
+    }
+  },
+  {
+    "canonical_name": "궁수교육원",
+    "category": "MAP",
+    "synonyms": ["헤네시스 궁수교육원", "헬레나의 집"],
+    "description": "헤네시스 동쪽 끝에 위치한 궁수들의 명예로운 전직 장소. 전설적인 명사수 헬레나가 상주하고 있습니다.",
+    "detail_data": {
+      "category": "MAP",
+      "map_type": "TOWN_INSIDE",
+      "region": "빅토리아 아일랜드 - 헤네시스",
+      "bgm": "Henesys Market",
+      "description": "거대한 버섯 모양의 건물 내부에 조성된 조용하고 엄숙한 교육 시설입니다. 궁수의 길을 걷고자 하는 모험가들이 1차 전직과 전직 이후의 수련을 위해 방문하는 곳입니다.",
+      "adjacent_maps": [
+          {
+            "target_map": "헤네시스",
+            "direction": "BOTTOM_RIGHT",
+            "portal_name": "교육원 출구",
+            "location_context": "중앙 하단 입구 포탈",
+            "portal_type": "REGULAR",
+            "description": "활기찬 분위기의 헤네시스 마을로 나갑니다."
+          }
+      ],
+      "special_portals": [],
+      "resident_npcs": ["헬레나"],
+      "resident_monsters": [],
+      "features": [
+        "궁수 1차 전직 (헬레나)",
+        "궁수 전직 퀘스트 수행",
+        "궁수 전직 보상 지급",
+        "명사수의 명예의 전당"
+      ],
+      "min_level": 0,
+      "recommended_level_range": null,
+      "is_safe_zone": true,
+      "required_quest": null,
+      "star_force_limit": 0,
+      "arcane_power_limit": 0
+    }
+  },
+  {
+  "canonical_name": "커닝시티",
+  "category": "MAP",
+  "synonyms": ["커닝", "도적 마을", "지하철 마을", "뒷골목 도시"],
+  "description": "빅토리아 아일랜드 서북쪽에 위치한 현대적인 느낌의 도시입니다. 도적들의 본거지인 재즈바와 지하철, 하수구 파티퀘스트로 유명합니다.",
+  "detail_data": {
+    "category": "MAP",
+    "map_type": "TOWN",
+    "region": "빅토리아 아일랜드",
+    "bgm": "Bad Guys",
+    "description": "공사장과 지하철, 하수구가 어우러진 현대적 감성의 도시입니다. 도적으로 전직하려는 모험가들이 모여듭니다.",
+    "adjacent_maps": [
+      {
+        "target_map": "커닝시티 서쪽 필드",
+        "direction": "MID_LEFT",
+        "portal_name": "커닝시티 서쪽 입구",
+        "location_context": "마을 왼쪽 끝 중앙",
+        "portal_type": "REGULAR",
+        "description": "리스항구 및 여섯갈래길 방면으로 이어지는 외곽 필드입니다."
+      },
+      {
+        "target_map": "커닝시티 공사장",
+        "direction": "MID_RIGHT",
+        "portal_name": "공사장 진입로",
+        "location_context": "마을 오른쪽 상단 푸른 트럭 위",
+        "portal_type": "REGULAR",
+        "description": "주황버섯과 옥토퍼스가 출현하는 공사장 구역입니다."
+      },
+      {
+        "target_map": "커닝시티 지하철",
+        "direction": "BOTTOM_LEFT",
+        "portal_name": "지하철역 입구",
+        "location_context": "마을 오른쪽 중앙 매표소 건물",
+        "portal_type": "BUILDING_ENTRANCE",
+        "description": "버블링과 스티지가 서식하는 지하철 내부로 이어집니다."
+      },
+      {
+        "target_map": "커닝시티 하수구",
+        "direction": "BOTTOM_RIGHT",
+        "portal_name": "하수구 철망",
+        "location_context": "마을 중앙 하단, 라케리스 옆",
+        "portal_type": "REGULAR",
+        "description": "파티퀘스트 '첫 번째 동행'이 진행되는 하수구 내부입니다."
+      },
+      {
+        "target_map": "재즈바",
+        "direction": "MID_CENTER",
+        "portal_name": "재즈바 입구",
+        "location_context": "마을 중앙 재즈바 지하",
+        "portal_type": "BUILDING_ENTRANCE",
+        "description": "다크로드가 있는 도적들의 아지트입니다."
+      }
+      ],
+      "special_portals": [
+        {
+          "target_region": "빅토리아 아일랜드 전역",
+          "portal_type": "TAXI",
+          "portal_name": "중형 택시",
+          "location_context": "마을 중앙 도로",
+          "description": "일정한 메소를 지불하고 다른 마을(여섯갈래길 등)로 즉시 이동합니다."
+        }
+      ],
+      "resident_npcs": [
+        "넬라",
+        "뒷골목의 제이엠",
+        "이카루스",
+        "라케리스",
+        "다크로드",
+        "만슈타인",
+        "마파",
+        "돈 지오바니",
+        "크리스",
+        "소문난"
+      ],
+      "resident_monsters": [],
+      "features": [
+        "도적 전직 (재즈바)",
+        "파티퀘스트 (첫 번째 동행)",
+        "지하철 이동 서비스",
+        "무기 및 잡화 상점"
+      ],
+      "min_level": 0,
+      "recommended_level_range": null,
+      "is_safe_zone": true,
+      "required_quest": null,
+      "star_force_limit": 0,
+      "arcane_power_limit": 0,
+      "respawn_time": 0
+    }
+  },
+  {
+    "canonical_name": "페리온",
+    "category": "MAP",
+    "synonyms": [
+      "페리",
+      "전사의 마을",
+      "바위산",
+      "고원 지대",
+      "Perion"
+    ],
+    "description": "붉은 바위산 정상에 위치한 강인한 전사들의 고향입니다.",
+    "detail_data": {
+      "category": "MAP",
+      "map_type": "TOWN",
+      "region": "빅토리아 아일랜드",
+      "bgm": "Perion",
+      "description": "거친 모래바람과 붉은 바위가 특징인 고산 지대 마을입니다. 마을에 있는 전사의 성전에서 전사로 전직할 수 있으며, 험준한 지형 덕분에 이동이 다소 까다롭습니다.",
+      "adjacent_maps": [
+        {
+          "target_map": "페리온 서쪽령",
+          "direction": "BOTTOM_LEFT",
+          "portal_name": "페리온 서쪽 입구",
+          "location_context": "마을 왼쪽 하단",
+          "portal_type": "REGULAR",
+          "description": "여섯갈래길 및 커닝시티 방면으로 이어지는 첫 번째 바위산 필드입니다."
+        },
+        {
+          "target_map": "페리온 동쪽령",
+          "direction": "BOTTOM_RIGHT",
+          "portal_name": "페리온 동쪽 입구",
+          "location_context": "마을 오른쪽 하단",
+          "portal_type": "REGULAR",
+          "description": "유적발굴지 및 깊은 바위산으로 이어지는 험난한 길목입니다."
+        },
+        {
+          "target_map": "페리온 북쪽령",
+          "direction": "MID_RIGHT",
+          "portal_name": "페리온 북쪽 입구",
+          "location_context": "마을 위쪽 중앙",
+          "portal_type": "REGULAR",
+          "description": "와일드보어가 출현하는 북쪽 고원 지대로 이동합니다."
+        }
+      ],
+      "special_portals": [
+        {
+          "target_map": "전사의 성전",
+          "portal_type": "BUILDING_ENTRANCE",
+          "portal_name": "성전 입구",
+          "location_context": "마을 오른쪽 하단",
+          "description": "전직관 '주먹펴고 일어서'가 있는 성전입니다."
+        },
+        {
+          "target_region": "빅토리아 아일랜드 전역",
+          "portal_type": "TAXI",
+          "portal_name": "중형 택시",
+          "location_context": "마을 중앙 하단",
+          "description": "다른 주요 마을로 즉시 이동하는 택시 서비스입니다."
+        }
+        ],
+      "resident_npcs": [
+        "주먹펴고 일어서",
+        "이얀",
+        "만지",
+        "돼지와 함께 춤을",
+        "리버",
+        "소피아",
+        "선더"
+      ],
+      "resident_monsters": [],
+      "features": [
+        "전사 전직 (전사 성전)",
+        "무기 및 방어구 제작/수리 (리버)",
+        "아이템 상점 (소피아)",
+        "창고 (선더)"
+      ],
+      "min_level": 0,
+      "recommended_level_range": null,
+      "is_safe_zone": true,
+      "required_quest": null,
+      "star_force_limit": 0,
+      "arcane_power_limit": 0
+    }
+  },
+  {
+    "canonical_name": "엘리니아",
+    "category": "MAP",
+    "synonyms": [
+      "요정 마을",
+      "마법사 마을",
+      "법사 마을"
+    ],
+    "description": "거대한 나무 위에 지어진 요정들과 마법사의 마을",
+    "detail_data": {
+      "category": "MAP",
+      "map_type": "TOWN",
+      "region": "빅토리아 아일랜드",
+      "bgm": "When the Moon Shines on Kirihi Leaf",
+      "description": "신비로운 빛과 거대한 나무숲으로 둘러싸인 마을입니다. 마법사로 전직하기 위해 반드시 와야하는 마을입니다.",
+      "adjacent_maps": [
+        {
+          "target_map": "마법도서관",
+          "direction": "TOP_CENTER"
+        },
+        {
+          "target_map": "엘리니아 북쪽숲",
+          "direction": "MID_LEFT"
+        },
+        {
+          "target_map": "솟아오른 나무",
+          "direction": "TOP_LEFT"
+        },
+        {
+          "target_map": "엘리니아 남쪽숲",
+          "direction": "BOTTOM_LEFT"
+        }
+      ],
+      "special_portals": [
+        {
+          "target_region": "오르비스",
+          "portal_type": "SHIP",
+          "description": "엘리니아 정거장 배편"
+        }
+      ],
+      "resident_npcs": [
+        "로웬",
+        "아르웬",
+        "팬지",
+        "하인즈"
+      ],
+      "resident_monsters": [],
+      "features": [
+        "마법사 전직",
+        "정거장",
+        "마법 도서관"
+      ],
+      "min_level": 0,
+      "recommended_level_range": null,
+      "is_safe_zone": true,
+      "required_quest": null,
+      "star_force_limit": 0,
+      "arcane_power_limit": 0
+    }
+  },
+  {
+    "canonical_name": "슬리피우드",
+    "category": "MAP",
+    "synonyms": [
+      "슬피",
+      "개미굴 마을",
+      "던전"
+    ],
+    "description": "빅토리아 아일랜드 중앙 깊숙한 곳에 위치한 신비로운 숲",
+    "detail_data": {
+      "category": "MAP",
+      "map_type": "TOWN",
+      "region": "빅토리아 아일랜드",
+      "bgm": "Sleepywood",
+      "description": "축축하고 어두운 기운이 감도는 던전 입구의 마을입니다. 예전에 많은 모험가들이 발록에 도전하기 위해 잠시 머무르던 마을입니다.",
+      "adjacent_maps": [
+        {
+          "target_map": "던전으로 가는 길?맵 이름이 기억이 안나네",
+          "direction": "MID_LEFT",
+          "description": "던전으로 가는 길"
+        },
+        {
+          "target_map": "개미굴1",
+          "direction": "BOTTOM_RIGHT",
+          "description": "깊은 동굴 진입"
+        }
+      ],
+      "special_portals": [],
+      "resident_npcs": [
+        "기억하고 있는 자",
+        "크리슈라마",
+        "사비트라마"
+      ],
+      "resident_monsters": [],
+      "features": [
+        "호텔(사우나)",
+        "고급 택시",
+        "저주받은 신전 입구"
+      ],
+      "min_level": 0,
+      "recommended_level_range": null,
+      "is_safe_zone": true,
+      "required_quest": null,
+      "star_force_limit": 0,
+      "arcane_power_limit": 0
+    }
+  },
+  {
+    "canonical_name": "리스항구 잡화점",
+    "category": "MAP",
+    "synonyms": [
+      "리스 잡화점",
+      "미나의 상점"
+    ],
+    "description": "리스항구 내부에 위치한 잡화 상점 건물 안",
+    "detail_data": {
+      "category": "MAP",
+      "map_type": "TOWN",
+      "region": "빅토리아 아일랜드",
+      "bgm": "Above the Treetops",
+      "description": "각종 소비 아이템과 귀환 주문서를 판매하는 상점 내부입니다.",
+      "adjacent_maps": [
+        {
+          "target_map": "리스항구",
+          "direction": "BOTTOM_LEFT",
+          "description": "상점 밖으로 나가기"
+        }
+      ],
+      "special_portals": [],
+      "resident_npcs": [
+        "미나"
+      ],
+      "resident_monsters": [],
+      "features": [
+        "포션 판매",
+        "주문서 판매"
+      ],
+      "min_level": 0,
+      "recommended_level_range": null,
+      "is_safe_zone": true,
+      "required_quest": null,
+      "star_force_limit": 0,
+      "arcane_power_limit": 0
+    }
+  },
+  {
+    "canonical_name": "미나",
+    "category": "NPC",
+    "synonyms": [
+      "잡화상인 미나",
+      "상인 미나",
+      "리스항구 잡화점 주인"
+    ],
+    "description": "리스항구 잡화점에서 모험가들에게 필요한 각종 소비 아이템을 판매하는 베테랑 상인입니다.",
+    "detail_data": {
+      "category": "NPC",
+      "npc_type": "잡화 상인",
+      "description": "리스항구의 유일한 잡화점을 운영하며, 초보 모험가들에게 필수적인 포션과 귀환 주문서를 공급합니다.",
+      "location": "리스항구 잡화점",
+      "region": "리스항구",
+      "services": [
+        "소비 아이템 판매",
+        "장비 매입",
+        "귀환 주문서 판매"
+      ],
+      "sells_items": [
+        "빨간 포션",
+        "주황 포션",
+        "하얀 포션",
+        "파란 포션",
+        "마나 엘릭서",
+        "마을 귀환 주문서(리스항구)"
+      ],
+      "related_quests": [],
+      "dialogue": "어서 오세요. 항구를 떠나기 전에 포션은 넉넉히 챙겼나요?",
+      "is_merchant": true,
+      "is_quest_giver": true
+    }
+  },
+  {
+    "canonical_name": "페이슨",
+    "category": "NPC",
+    "synonyms": [
+      "이동 안내원 페이슨",
+      "안내자 페이슨",
+      "플로리다 비치 가이드"
+    ],
+    "description": "리스항구 선착장에서 모험가들에게 대륙 이동 정보를 제공하고 플로리다 비치로 안내하는 NPC입니다.",
+    "detail_data": {
+      "category": "NPC",
+      "npc_type": "안내 및 이동",
+      "description": "빅토리아 아일랜드에 처음 도착한 모험가들에게 전직 및 마을 이동 정보를 알려주며, 특정 비용을 받고 플로리다 비치행 배를 태워줍니다.",
+      "location": "리스항구 선착장",
+      "region": "리스항구",
+      "services": [
+        "플로리다 비치 이동",
+        "초보자 가이드",
+        "중형 택시 이용 안내"
+      ],
+      "sells_items": [],
+      "related_quests": [
+        "페이슨의 정보",
+        "플로리다 비치로 가는 길"
+      ],
+      "dialogue": "바다 너머 새로운 모험이 기다리고 있지. 플로리다 비치로 가보겠나?",
+      "is_merchant": false,
+      "is_quest_giver": true
+    }
+  },
+  {
+    "canonical_name": "아이스진",
+    "category": "ITEM",
+    "synonyms": [
+      "아이스진",
+      "얼음바지",
+      "청바지"
+    ],
+    "description": "리스항구의 방어구상점에서 판매하는 시원한 푸른색의 청바지입니다.",
+    "detail_data": {
+      "category": "ITEM",
+      "item_type": "ARMOR",
+      "description": "보기만 해도 시원해지는 푸른색의 바지입니다. 가볍고 활동성이 좋아 모험가들에게 인기가 많습니다.",
+      "price": 4800,
+      "obtainable_from": [],
+      "required_level": 0,
+      "required_job": [],
+      "required_stats": null,
+      "stats": {
+        "DEF": 13,
+        "MAX_MP": 3,
+        "STR": 0,
+        "DEX": 0,
+        "INT": 0,
+        "LUK": 0
+      },
+      "dropped_by":["스포아"]
+    },
+      "effects": [],
+      "tradable": null,
+      "stackable": null,
+      "max_stack": null,
+      "quest_item": null,
+      "consumable": null
+    },
+    {
+      "canonical_name": "스포아",
+      "category": "MONSTER",
+      "synonyms": [
+        "스포아",
+        "작은 버섯"
+      ],
+      "description": "빅토리아 아일랜드 외곽에서 흔히 볼 수 있는 아주 약한 버섯입니다.",
+      "detail_data": {
+        "category": "MONSTER",
+        "monster_type": "NORMAL",
+        "description": null,
+        "level": 2,
+        "hp": 20,
+        "mp": 0,
+        "exp": 5,
+        "attack": null,
+        "defense": null,
+        "spawn_maps": [],
+        "region": "빅토리아 아일랜드",
+        "drops": [
+          {
+            "item_name": "아이스진",
+            "drop_rate": 0.001
+          },
+          {
+            "item_name": "메소",
+            "drop_rate": 0.9
+          },
+          {
+            "item_name": "버섯의 포자",
+            "drop_rate": 0.07
+          },
+          {
+            "item_name": "빨간 포션",
+            "drop_rate": 0.05
+          },
+          {
+            "item_name": "활전용 화살",
+            "drop_rate": 0.008
+          },
+          {
+            "item_name": "석궁전용 화살",
+            "drop_rate": 0.008
+          },
+          {
+            "item_name": "초록사과",
+            "drop_rate": 0.007
+          },
+          {
+            "item_name": "미스릴의 원석",
+            "drop_rate": 0.003
+          },
+          {
+            "item_name": "아쿠아바린의 원석",
+            "drop_rate": 0.002
+          },
+          {
+            "item_name": "필드 대거",
+            "drop_rate": 0.0001
+          },
+          {
+            "item_name": "파란 칠부바지",
+            "drop_rate": 0.0001
+          },
+          {
+            "item_name": "그린 아벨린 치마",
+            "drop_rate": 0.0001
+          },
+          {
+            "item_name": "망토 체력 주문서 60%",
+            "drop_rate": 0.0006
+          }
+        ],
+        "meso_drop_range": null,
+        "element": null,
+        "boss": null,
+        "abilities": [],
+        "weaknesses": []
+    }
+  },
+  {
+    "canonical_name": "주황버섯",
+    "category": "MONSTER",
+    "synonyms": ["주벗"],
+    "description": "메이플스토리의 상징과도 같은 몬스터로, 껑충껑충 뛰어다니며 모험가를 공격합니다.",
+    "detail_data": {
+      "category": "MONSTER",
+      "monster_type": "NORMAL",
+      "description": "스포아보다 훨씬 강력하며, 초보 모험가들이 처음으로 마주하는 고비이기도 합니다.",
+      "level": 8,
+      "hp": 80,
+      "mp": 10,
+      "exp": 15,
+      "attack": 25,
+      "defense": 5,
+      "spawn_maps": [
+        "헤네시스 북쪽 언덕",
+        "커닝시티 공사장",
+        "리스항구 외곽",
+        "페리온 서쪽령",
+        "남쪽숲 나무줄기"
+      ],
+      "region": "빅토리아 아일랜드",
+      "drops": [
+        { "item_name": "주황버섯의 갓", "drop_rate": 0.7 },
+        { "item_name": "메소", "drop_rate": 0.9 },
+        { "item_name": "주황 포션", "drop_rate": 0.04 },
+        { "item_name": "전신 갑옷 민첩성 주문서 10%", "drop_rate": 0.005 },
+        { "item_name": "신발 이동속도 주문서 60%", "drop_rate": 0.008 },
+        { "item_name": "금의 원석", "drop_rate": 0.002 },
+        { "item_name": "토파즈의 원석", "drop_rate": 0.002 },
+        { "item_name": "검정색 고무신", "drop_rate": 0.0015 }
+      ],
+      "meso_drop_range": "10-25",
+      "element": null,
+      "boss": false,
+      "abilities": [],
+      "weaknesses": []
+    }
+  },
+  {
+    "canonical_name": "슬라임",
+    "category": "MONSTER",
+    "synonyms": ["초록 젤리"],
+    "description": "초록색 젤리 형태의 몬스터로, 끈적끈적한 몸을 이용해 통통 튀어 다닙니다.",
+    "detail_data": {
+      "category": "MONSTER",
+      "monster_type": "NORMAL",
+      "description": "주로 습한 곳이나 나무 근처에서 서식하며, 초보자들에게 유용한 아이템을 많이 줍니다.",
+      "level": 6,
+      "hp": 50,
+      "mp": 5,
+      "exp": 10,
+      "attack": 18,
+      "defense": 2,
+      "spawn_maps": [
+        "엘리니아 남쪽 필드",
+        "솟아오른 나무",
+        "커닝시티 지하철",
+        "커닝시티 하수구",
+        "헤네시스 서쪽 숲"
+      ],
+      "region": "빅토리아 아일랜드",
+      "drops": [
+        { "item_name": "물컹물컹한 액체", "drop_rate": 0.4 },
+        { "item_name": "슬라임의 방울", "drop_rate": 0.0003 },
+        { "item_name": "빨간 포션", "drop_rate": 0.01 },
+        { "item_name": "활전용 화살", "drop_rate": 0.008 },
+        { "item_name": "석궁전용 화살", "drop_rate": 0.008 },
+        { "item_name": "메소", "drop_rate": 0.9 },
+        { "item_name": "사파이어의 원석", "drop_rate": 0.003 },
+        { "item_name": "오리활콘의 원석", "drop_rate": 0.002 },
+        { "item_name": "쇠도끼", "drop_rate": 0.016 },
+        { "item_name": "베이지 니티", "drop_rate": 0.006 },
+        { "item_name": "가죽 핸드백", "drop_rate": 0.001 },
+        { "item_name": "철제 도끼", "drop_rate": 0.001 },
+        { "item_name": "포크창", "drop_rate": 0.001 },
+        { "item_name": "흰색 두건", "drop_rate": 0.001 },
+        { "item_name": "하의 방어력 주문서 10%", "drop_rate": 0.0006 },
+        { "item_name": "망토 민첩 주문서 100%", "drop_rate": 0.0006 }
+      ],
+      "meso_drop_range": "8-18",
+      "element": null,
+      "boss": false,
+      "abilities": [],
+      "weaknesses": ["전기"]
+    }
+  },
+  {
+    "canonical_name": "다크로드",
+    "category": "NPC",
+    "synonyms": [
+      "도적 전직",
+      "도적 전직관",
+      "커닝시티 수장",
+      "다크 로드"
+    ],
+    "description": "커닝시티 재즈바 지하에 은거하며 도적들을 양성하는 수장입니다.",
+    "detail_data": {
+      "category": "NPC",
+      "npc_type": "전직관",
+      "description": "도적이 되고 싶은 모험가들에게 도적의 비기를 알려주는 도적(로그)들의 리더입니다.",
+      "location": "재즈바",
+      "region": "커닝시티",
+      "services": [
+        "도적",
+        "로그",
+        "어쌔신",
+        "시프",
+        "나이트로드",
+        "시프마스터",
+        "시마",
+        "나로",
+        "섀도어",
+        "섀도",
+        "도적 전직",
+        "도적 전용 퀘스트",
+        "도적 전직관"
+      ],
+      "sells_items": [],
+      "related_quests": [
+        "도적의 길",
+        "비화원과의 갈등",
+        "어둠의 증표 수집"
+      ],
+      "dialogue": "도적이 되고 싶은가?",
+      "is_merchant": false,
+      "is_quest_giver": true
+    }
+  },
+  {
+    "canonical_name": "하인즈",
+    "category": "NPC",
+    "synonyms": ["마법사 전직", "마법사 전직관", "엘리니아 수장", "대마법사", "하인즈"],
+    "description": "엘리니아 마법도서관에서 끝없는 지식을 탐구하는 대마법사입니다.",
+    "detail_data": {
+      "category": "NPC",
+      "npc_type": "전직관",
+      "description": "높은 지능과 정신력을 바탕으로 마법의 비기를 전수합니다.",
+      "location": "마법도서관",
+      "region": "엘리니아",
+      "services": ["마법사", "매지션", "위자드", "클레릭", "아크메이지", "비숍", "마법사 전직", "마법사 전용 퀘스트"],
+      "sells_items": [],
+      "related_quests": ["마법사의 길", "검은 마법사의 흔적", "지식의 탐구"],
+      "dialogue": "지혜를 찾는 자여, 마법의 근원에 도달하고 싶은가?",
+      "is_merchant": false,
+      "is_quest_giver": true
+    }
+  },
+  {
+    "canonical_name": "헬레나",
+    "category": "NPC",
+    "synonyms": ["궁수 전직", "궁수 전직관", "헤네시스 수장", "엘프 헬레나", "궁수 마스터"],
+    "description": "헤네시스 궁수 교육원에서 신중하고 정확한 활쏘기를 가르치는 엘프 장로입니다.",
+    "detail_data": {
+      "category": "NPC",
+      "npc_type": "전직관",
+      "description": "바람처럼 빠른 몸놀림과 백발백중의 궁술을 안내합니다.",
+      "location": "궁수 교육원",
+      "region": "헤네시스",
+      "services": ["궁수", "아처", "헌터", "사수", "보우마스터", "신궁", "윈드브레이커", "궁수 전직"],
+      "sells_items": [],
+      "related_quests": ["궁수의 길", "바람의 흔적", "헤네시스의 평화"],
+      "dialogue": "바람의 흐름을 읽을 수 있다면 훌륭한 궁수가 될 수 있어요.",
+      "is_merchant": false,
+      "is_quest_giver": true
+    }
+  },
+  {
+    "canonical_name": "카이린",
+    "category": "NPC",
+    "synonyms": ["해적 전직", "해적 전직관", "노틸러스 선장", "카이린", "해적 마스터"],
+    "description": "노틸러스호의 선장이자, 새로운 항해를 꿈꾸는 해적들의 리더입니다.",
+    "detail_data": {
+      "category": "NPC",
+      "npc_type": "전직관",
+      "description": "총과 주먹을 사용하는 자유로운 해적의 길을 인도합니다.",
+      "location": "노틸러스호 선장실",
+      "region": "노틸러스",
+      "services": ["해적", "파이렛", "인파이터", "건슬링거", "바이퍼", "캡틴", "캐논슈터", "해적 전직"],
+      "sells_items": [],
+      "related_quests": ["해적의 길", "노틸러스의 보급", "미지의 바다"],
+      "dialogue": "바다는 넓고 자유롭지! 우리와 함께 항해하겠나?",
+      "is_merchant": false,
+      "is_quest_giver": true
+    }
+  },
+  {
+    "canonical_name": "주먹펴고 일어서",
+    "category": "NPC",
+    "synonyms": ["전사 전직", "전사 전직관", "페리온 수장", "주먹펴고일어서", "전사 마스터"],
+    "description": "페리온의 전사 성전에서 강력한 전사들을 양성하는 강인한 영웅입니다.",
+    "detail_data": {
+      "category": "NPC",
+      "npc_type": "전직관",
+      "description": "강한 힘과 체력을 중시하는 전사의 길을 안내합니다.",
+      "location": "전사의 성전",
+      "region": "페리온",
+      "services": ["전사", "검사", "파이터", "페이지", "스피어맨", "히어로", "팔라딘", "다크나이트", "전사 전직"],
+      "sells_items": [],
+      "related_quests": ["전사의 길", "강함의 증명", "페리온의 위기"],
+      "dialogue": "자네, 강인한 전사의 혼이 느껴지는군.",
+      "is_merchant": false,
+      "is_quest_giver": true
+    }
+  },
+  {
+    "canonical_name": "넬라",
+    "category": "NPC",
+    "synonyms": ["커닝시티 해결사", "해결사 넬라", "도시락 배달", "커닝시티 정보원"],
+    "description": "커닝시티 거리에서 마을의 크고 작은 일들을 중재하는 해결사입니다.",
+    "detail_data": {
+      "category": "NPC",
+      "npc_type": "퀘스트 안내인",
+      "description": "커닝시티 주민들의 다양한 부탁을 모험가에게 전달합니다.",
+      "location": "커닝시티 중단 거리",
+      "region": "커닝시티",
+      "services": ["퀘스트 대행", "마을 정보", "연계 퀘스트"],
+      "sells_items": [],
+      "related_quests": ["넬라와 커닝시티 주민들의 의뢰", "주민들의 고민"],
+      "dialogue": "커닝시티에서 도움이 필요한 사람이 있다면 나를 찾아와.",
+      "is_merchant": false,
+      "is_quest_giver": true
+    }
+  },
+  {
+    "canonical_name": "라케리스",
+    "category": "NPC",
+    "synonyms": ["파티퀘스트 안내원", "커닝 파퀘", "첫 번째 동행", "킹슬라임 퀘스트"],
+    "description": "커닝시티 하수구 근처에서 파티 퀘스트 '첫 번째 동행'을 안내하는 NPC입니다.",
+    "detail_data": {
+      "category": "NPC",
+      "npc_type": "파티퀘스트 안내인",
+      "description": "4인 파티를 구성하여 도전하는 협동 퀘스트를 주관합니다.",
+      "location": "커닝시티 하수구 입구",
+      "region": "커닝시티",
+      "services": ["파티퀘스트", "첫 번째 동행", "커닝 파퀘", "킹슬라임 처치"],
+      "sells_items": [],
+      "related_quests": ["첫 번째 동행 (파티)"],
+      "dialogue": "동료들과 함께 하수구 속의 위험을 해결해 보겠어?",
+      "is_merchant": false,
+      "is_quest_giver": true
+    }
+  },
+  {
+    "canonical_name": "이카루스",
+    "category": "NPC",
+    "synonyms": ["이카루스의 망토", "이카 망토", "하늘을 날고 싶은 소년", "이카루스 퀘스트"],
+    "description": "하늘을 나는 꿈을 가진 소년으로, 모험가들에게 특별한 망토 제작을 의뢰합니다.",
+    "detail_data": {
+      "category": "NPC",
+      "npc_type": "퀘스트 NPC",
+      "description": "비행에 대한 호기심이 많아 다양한 재료를 수집해달라고 부탁합니다.",
+      "location": "커닝시티 뒷골목",
+      "region": "커닝시티",
+      "services": ["망토 퀘스트", "이카루스의 망토", "하늘을 나는 약"],
+      "sells_items": [],
+      "related_quests": ["이카루스의 망토", "이카루스의 열망", "하늘을 나는 방법"],
+      "dialogue": "나도 언젠가는 저 하늘을 자유롭게 날 수 있겠지?",
+      "is_merchant": false,
+      "is_quest_giver": true
+    }
+  },
+  {
+    "canonical_name": "만슈타인",
+    "category": "NPC",
+    "synonyms": ["커닝시티 무기상인", "무기점 아저씨", "단검 판매", "아대 판매", "도적 무기 상인"],
+    "description": "커닝시티 무기상점의 주인으로, 도적들이 사용하는 날카로운 단검과 아대를 전문적으로 취급합니다.",
+    "detail_data": {
+      "category": "NPC",
+      "npc_type": "무기 상인",
+      "description": "다양한 공격용 장비를 판매하며, 장비 수리 업무도 겸하고 있습니다.",
+      "location": "커닝시티 무기상점",
+      "region": "커닝시티",
+      "services": ["무기 판매", "장비 수리", "방어구 판매"],
+      "sells_items": ["단검", "아대", "화살", "표창", "가죽 모자", "도적 바지"],
+      "related_quests": [],
+      "dialogue": "어이, 날카로운 무기가 필요한가? 내 물건은 믿어도 좋다구.",
+      "is_merchant": true,
+      "is_quest_giver": false
+    }
+  },
+  {
+    "canonical_name": "소문난",
+    "category": "NPC",
+    "synonyms": ["커닝시티 잡화상인", "약국 아저씨", "포션 판매", "물약 상인", "커닝 잡화점"],
+    "description": "커닝시티 약국에서 모험가들에게 필수적인 회복 물약과 주문서를 판매합니다.",
+    "detail_data": {
+      "category": "NPC",
+      "npc_type": "잡화 상인",
+      "description": "소비 아이템과 마을 귀환 주문서 등을 취급합니다.",
+      "location": "커닝시티 약국",
+      "region": "커닝시티",
+      "services": ["소비 아이템 판매", "기타 아이템 매입"],
+      "sells_items": ["빨간 포션", "파란 포션", "주황 포션", "하얀 포션", "마을 귀환 주문서"],
+      "related_quests": [],
+      "dialogue": "모험을 떠나기 전엔 포션을 든든히 챙겨야 하는 법이지.",
+      "is_merchant": true,
+      "is_quest_giver": false
+    }
+  },
+  {
+    "canonical_name": "커닝시티 호신용품점",
+    "category": "MAP",
+    "synonyms": ["커닝 무기점", "커닝 수리점", "커닝 상점"],
+    "description": "각종 무기들이 벽면에 전시되어 있는 커닝시티의 장비 전문점입니다.",
+    "detail_data": {
+      "category": "MAP",
+      "map_type": "TOWN",
+      "region": "빅토리아 아일랜드",
+      "bgm": "Bad Guys",
+      "description": "도적들의 성지답게 다양한 단검과 아대 라인업을 갖추고 있습니다.",
+      "adjacent_maps": [
+        {
+          "target_map": "커닝시티",
+          "direction": "MID_LEFT",
+          "description": "상점 밖으로 나가기"
+        }
+      ],
+      "special_portals": [],
+      "resident_npcs": ["만슈타인", "마파"],
+      "resident_monsters": [],
+      "features": ["무기 판매", "방어구 판매", "장비 수리"],
+      "min_level": 0,
+      "recommended_level_range": null,
+      "is_safe_zone": true,
+      "required_quest": null,
+      "star_force_limit": 0,
+      "arcane_power_limit": 0
+    }
+  },
+  {
+    "canonical_name": "커닝시티 약국",
+    "category": "MAP",
+    "synonyms": ["커닝 잡화점", "물약 상점", "커닝 약방", "크리스 상점"],
+    "description": "모험가들의 체력과 마력을 책임지는 물약을 판매하는 커닝시티의 보급 창고입니다.",
+    "detail_data": {
+      "category": "MAP",
+      "map_type": "TOWN",
+      "region": "빅토리아 아일랜드",
+      "bgm": "Bad Guys",
+      "description": "다양한 종류의 연금술 포션과 주문서를 취급하는 실내 맵입니다.",
+      "adjacent_maps": [
+        {
+          "target_map": "커닝시티",
+          "direction": "TOP_RIGHT",
+          "description": "상점 밖으로 나가기"
+        }
+      ],
+      "special_portals": [],
+      "resident_npcs": ["소문난"],
+      "resident_monsters": [],
+      "features": ["포션 판매", "주문서 판매", "기타 아이템 매입"],
+      "min_level": 0,
+      "recommended_level_range": null,
+      "is_safe_zone": true,
+      "required_quest": null,
+      "star_force_limit": 0,
+      "arcane_power_limit": 0
+    }
+  },
+  {
+  "canonical_name": "개미굴1",
+  "category": "MAP",
+  "synonyms": [
+    "갬굴",
+    "개미굴",
+    "좀비버섯굴",
+    "Ant Tunnel 1"
+  ],
+  "description": "슬리피우드 깊은 곳에 위치한 거대한 개미굴의 입구입니다. 수많은 뿔버섯과 좀비버섯이 서식하고 있습니다.",
+  "detail_data": {
+    "category": "MAP",
+    "map_type": "DUNGEON",
+    "region": "빅토리아 아일랜드",
+    "bgm": "Dungeon",
+    "description": "어둡고 습한 동굴 내부입니다. 여러 층으로 구성된 지형 덕분에 파티 사냥이 매우 활발하며, 아래로 내려갈수록 더 깊은 동굴로 이어집니다.",
+    "adjacent_maps": [
+      {
+        "target_map": "슬리피우드",
+        "direction": "TOP_LEFT",
+        "portal_name": "동굴 밖으로",
+        "location_context": "맵 최상단 왼쪽 끝",
+        "portal_type": "REGULAR",
+        "description": "안전한 마을인 슬리피우드로 돌아가는 통로입니다."
+      },
+      {
+        "target_map": "개미굴2",
+        "direction": "BOTTOM_RIGHT",
+        "portal_name": "깊은 동굴 통로",
+        "location_context": "맵 최하단 오른쪽 끝",
+        "portal_type": "REGULAR",
+        "description": "개미굴2로 이어지는 깊은 구멍입니다."
+      }
+    ],
+    "special_portals": [
+      {
+        "target_map": "개미굴1 (내부 이동)",
+        "portal_type": "HIDDEN",
+        "portal_name": "층간 이동 포탈",
+        "location_context": "각 층의 끝자리",
+        "description": "복잡한 굴 구조를 빠르게 이동할 수 있도록 위아래 층을 연결하는 숨겨진 통로입니다."
+      }
+    ],
+    "resident_npcs": [],
+    "resident_monsters": [
+      "뿔버섯",
+      "좀비버섯"
+    ],
+    "features": [
+      "파티 사냥 성지",
+      "좀비버섯 대량 발생",
+      "세로형 지형"
+    ],
+    "min_level": 20,
+    "recommended_level_range": [20, 30],
+    "is_safe_zone": false,
+    "required_quest": null,
+    "star_force_limit": 0,
+    "arcane_power_limit": 0,
+    "respawn_time": 5
+  }
+  },
+  {
+    "canonical_name": "좀비버섯",
+    "category": "MONSTER",
+    "synonyms": ["좀버", "죽은 버섯", "Zombie Mushroom"],
+    "description": "개미굴 깊은 곳에서 발견되는, 죽지 못해 움직이는 기괴한 형태의 버섯입니다. 이마에 붙은 부적이 겨우 형체를 유지시키고 있습니다.",
+    "detail_data": {
+      "category": "MONSTER",
+      "monster_type": "NORMAL",
+      "description": "언데드 속성을 가지고 있어 성스러운 마법에 취약합니다. 개미굴 전역에서 개체 수가 매우 많아 파티 사냥의 주 표적이 됩니다.",
+      "level": 24,
+      "hp": 500,
+      "mp": 35,
+      "exp": 42,
+      "attack": 115,
+      "defense": 20,
+      "spawn_maps": [
+        "개미굴1",
+        "개미굴2",
+        "개미굴3",
+        "개미굴4",
+        "개미굴5",
+        "개미굴광장"
+      ],
+      "region": "빅토리아 아일랜드",
+      "drops": [
+        { "item_name": "죽은 자의 부적", "drop_rate": 0.45 },
+        { "item_name": "좀비버섯의 표지판", "drop_rate": 0.005 },
+        { "item_name": "빨간 포션", "drop_rate": 0.05 },
+        { "item_name": "하얀 포션", "drop_rate": 0.02 },
+        { "item_name": "마나 엘릭서", "drop_rate": 0.01 },
+        { "item_name": "메소", "drop_rate": 0.9 },
+        { "item_name": "금의 원석", "drop_rate": 0.005 },
+        { "item_name": "아다만티움의 원석", "drop_rate": 0.004 },
+        { "item_name": "흑수정의 원석", "drop_rate": 0.001 },
+        { "item_name": "태극 부채", "drop_rate": 0.0005 },
+        { "item_name": "귀 장식 지력 주문서 10%", "drop_rate": 0.0004 },
+        { "item_name": "하의 방어력 주문서 60%", "drop_rate": 0.0008 },
+        { "item_name": "신발 점프력 주문서 10%", "drop_rate": 0.0006 }
+      ],
+      "meso_drop_range": "20-35",
+      "element": "UNDEAD",
+      "boss": false,
+      "abilities": [],
+      "weaknesses": ["성(Holy)", "불"]
+    }
+  },
+  {
+    "canonical_name": "궁수 교육원",
+    "category": "MAP",
+    "synonyms": ["헤네시스 궁수 교육원", "헬레나의 집", "궁수 전직소"],
+    "description": "헤네시스 동쪽 끝 높은 언덕 위에 위치한 거대한 버섯 모양의 교육원입니다.",
+    "detail_data": {
+      "category": "MAP",
+      "map_type": "TOWN_INSIDE",
+      "region": "빅토리아 아일랜드",
+      "bgm": "Go Henesys",
+      "description": "평화로운 분위기 속에서 궁수들이 수련에 매진하는 곳입니다. 장로 헬레나가 상주하며 모험가들을 궁수의 길로 인도합니다.",
+      "adjacent_maps": [
+        {
+          "target_map": "헤네시스",
+          "direction": "BOTTOM_RIGHT",
+          "portal_name": "교육원 입구",
+          "location_context": "맵 하단 중앙",
+          "portal_type": "BUILDING_ENTRANCE",
+          "description": "헤네시스 마을로 나가는 통로입니다."
+        }
+      ],
+      "special_portals": [],
+      "resident_npcs": ["헬레나"],
+      "resident_monsters": [],
+      "features": ["궁수 전직", "궁수 전용 퀘스트"],
+      "min_level": 0,
+      "recommended_level_range": null,
+      "is_safe_zone": true,
+      "required_quest": null,
+      "star_force_limit": 0,
+      "arcane_power_limit": 0
+    }
+  },
+  {
+    "canonical_name": "노틸러스",
+    "category": "MAP",
+    "synonyms": ["노틸러스호", "해적 마을", "고래 배", "노틸러스 항구"],
+    "description": "거대한 고래 모양의 잠수함이자 해적들의 본거지입니다.",
+    "detail_data": {
+      "category": "MAP",
+      "map_type": "TOWN",
+      "region": "빅토리아 아일랜드",
+      "bgm": "Nautilus",
+      "description": "바다 위에 정박해 있는 거대한 선체 내부와 외부 선착장으로 구성되어 있습니다. 해적 전직을 위한 모험가들이 모여드는 곳입니다.",
+      "adjacent_maps": [
+        {
+          "target_map": "노틸러스호 선장실",
+          "direction": "MID_CENTER",
+          "portal_name": "선장실 입구",
+          "location_context": "노틸러스호 상층부",
+          "portal_type": "BUILDING_ENTRANCE",
+          "description": "선장 카이린이 있는 조종실로 들어가는 문입니다."
+        }
+      ],
+      "special_portals": [
+        {
+          "target_region": "빅토리아 아일랜드 전역",
+          "portal_type": "TAXI",
+          "portal_name": "중형 택시",
+          "location_context": "노틸러스 선착장 중앙",
+          "description": "다른 마을로 빠르게 이동시켜주는 택시입니다."
+        }
+      ],
+      "resident_npcs": ["슈만", "잭", "무라트", "카이린"],
+      "resident_monsters": [],
+      "features": ["해적 거점", "택시 서비스", "선착장"],
+      "min_level": 0,
+      "recommended_level_range": null,
+      "is_safe_zone": true,
+      "required_quest": null,
+      "star_force_limit": 0,
+      "arcane_power_limit": 0
+    }
+  },
+  {
+    "canonical_name": "노틸러스호 선장실",
+    "category": "MAP",
+    "synonyms": ["카이린의 방", "노틸러스 조종실", "선장실"],
+    "description": "노틸러스호의 모든 항해를 책임지는 조종실이자 카이린의 집무실입니다.",
+    "detail_data": {
+      "category": "MAP",
+      "map_type": "TOWN_INSIDE",
+      "region": "빅토리아 아일랜드",
+      "bgm": "Nautilus",
+      "description": "각종 항해 장비와 지도가 가득한 곳입니다. 해적 전직관 카이린이 상주하고 있습니다.",
+      "adjacent_maps": [
+        {
+          "target_map": "노틸러스",
+          "direction": "MID_RIGHT",
+          "portal_name": "조종실 문",
+          "location_context": "맵 하단 중앙",
+          "portal_type": "BUILDING_ENTRANCE",
+          "description": "노틸러스 중앙 복도로 나가는 길입니다."
+        }
+      ],
+      "special_portals": [],
+      "resident_npcs": ["카이린"],
+      "resident_monsters": [],
+      "features": ["해적 전직", "해적 전용 퀘스트"],
+      "min_level": 0,
+      "recommended_level_range": null,
+      "is_safe_zone": true,
+      "required_quest": null,
+      "star_force_limit": 0,
+      "arcane_power_limit": 0
+    }
+  },
+  {
+  "canonical_name": "재즈바",
+  "category": "MAP",
+  "synonyms": [
+    "도적 전직소",
+    "다크로드의 아지트",
+    "커닝시티 재즈바",
+    "Jazz Bar"
+  ],
+  "description": "커닝시티 뒷골목 지하에 위치한 비밀스러운 분위기의 재즈바입니다.",
+  "detail_data": {
+    "category": "MAP",
+    "map_type": "TOWN_INSIDE",
+    "region": "빅토리아 아일랜드",
+    "bgm": "Bad Guys",
+    "description": "어둑어둑한 조명 아래 도적들이 모여 정보를 나누는 곳입니다. 도적 전직관 다크로드가 맵 중앙에서 모험가들을 기다리고 있습니다.",
+    "adjacent_maps": [
+      {
+        "target_map": "커닝시티",
+        "direction": "TOP_RIGHT",
+        "portal_name": "재즈바 출구",
+        "location_context": "맵 상단 오른쪽",
+        "portal_type": "BUILDING_ENTRANCE",
+        "description": "다시 커닝시티 거리로 나갑니다."
+      }
+    ],
+    "special_portals": [],
+    "resident_npcs": [
+      "다크로드"
+    ],
+    "resident_monsters": [],
+    "features": [
+      "도적 전직",
+      "도적 전용 퀘스트",
+      "전직관 상주"
+    ],
+    "min_level": 0,
+    "recommended_level_range": null,
+    "is_safe_zone": true,
+    "required_quest": null,
+    "star_force_limit": 0,
+    "arcane_power_limit": 0
+  }
+}
+]

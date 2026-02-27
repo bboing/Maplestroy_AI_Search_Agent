@@ -1,0 +1,298 @@
+# AI Platform - 포트폴리오 제출용
+# Streamlit + Ollama + 인프라 (독립 실행 가능)
+
+name: taegyun_nexon_pj
+
+services:
+  # ============================================================
+  # Layer 1: Core Infrastructure
+  # ============================================================
+  
+  # PostgreSQL - 비즈니스 DB
+  biz-postgres:
+    image: postgres:16-alpine
+    container_name: ai-biz-postgres
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_DB=${BIZ_POSTGRES_DB:-maple}
+      - POSTGRES_USER=${BIZ_POSTGRES_USER}
+      - POSTGRES_PASSWORD=${BIZ_POSTGRES_PASSWORD}
+      - POSTGRES_INITDB_ARGS=--encoding=UTF-8 --lc-collate=C --lc-ctype=C
+      - TZ=UTC
+      - PGTZ=UTC
+    ports:
+      - "${BIZ_POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - biz-postgres-data:/var/lib/postgresql/data
+    networks:
+      - ai-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${BIZ_POSTGRES_USER} -d ${BIZ_POSTGRES_DB}"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+  # Redis - 캐시/큐
+  redis:
+    image: redis:7-alpine
+    container_name: ai-redis
+    env_file:
+      - .env
+    ports:
+      - "${REDIS_PORT}:6379"
+    volumes:
+      - redis-data:/data
+    command: >
+      redis-server 
+      --appendonly yes 
+      --requirepass ${REDIS_PASSWORD}
+      --maxmemory-policy noeviction
+    networks:
+      - ai-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 3s
+      timeout: 10s
+      retries: 10
+
+  # Neo4j - Graph Database
+  neo4j:
+    image: neo4j:5.15
+    container_name: ai-neo4j
+    ports:
+      - "7474:7474"  # Web UI
+      - "7687:7687"  # Bolt Protocol
+    environment:
+      - NEO4J_AUTH=${NEO4J_USER}/${NEO4J_PASSWORD}
+      - NEO4J_PLUGINS=["apoc"]
+      - NEO4J_dbms_security_procedures_unrestricted=apoc.*
+    volumes:
+      - neo4j-data:/data
+      - neo4j-logs:/logs
+    networks:
+      - ai-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "cypher-shell", "-u", "${NEO4J_USER}", "-p", "${NEO4J_PASSWORD}", "RETURN 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # etcd - Milvus 메타데이터 저장소
+  etcd:
+    image: quay.io/coreos/etcd:v3.5.5
+    container_name: ai-etcd
+    env_file:
+      - .env
+    environment:
+      - ETCD_AUTO_COMPACTION_MODE=revision
+      - ETCD_AUTO_COMPACTION_RETENTION=1000
+      - ETCD_QUOTA_BACKEND_BYTES=4294967296
+      - ETCD_SNAPSHOT_COUNT=50000
+    volumes:
+      - etcd-data:/etcd
+    command: etcd -advertise-client-urls=http://127.0.0.1:2379 -listen-client-urls http://0.0.0.0:2379 --data-dir /etcd
+    networks:
+      - ai-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "etcdctl", "endpoint", "health"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+  # MinIO - Milvus 전용 (벡터 저장)
+  minio-milvus:
+    image: minio/minio:RELEASE.2023-03-20T20-16-18Z
+    container_name: ai-minio-milvus
+    env_file:
+      - .env
+    environment:
+      MINIO_ROOT_USER: ${MINIO_MILVUS_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_MILVUS_PASSWORD}
+    ports:
+      - "${MINIO_MILVUS_API_PORT:-9000}:9000"
+      - "${MINIO_MILVUS_CONSOLE_PORT:-9001}:9001"
+    volumes:
+      - minio-milvus-data:/minio_data
+    command: minio server /minio_data --console-address ":9001"
+    networks:
+      - ai-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+  # ============================================================
+  # Layer 2: Data Platform
+  # ============================================================
+
+  # Milvus - 벡터 데이터베이스
+  milvus:
+    image: milvusdb/milvus:v2.3.3
+    container_name: ai-milvus
+    env_file:
+      - .env
+    environment:
+      ETCD_ENDPOINTS: etcd:2379
+      MINIO_ADDRESS: minio-milvus:9000
+      MINIO_ACCESS_KEY_ID: ${MINIO_MILVUS_USER}
+      MINIO_SECRET_ACCESS_KEY: ${MINIO_MILVUS_PASSWORD}
+    ports:
+      - "${MILVUS_PORT:-19530}:19530"
+      - "${MILVUS_METRIC_PORT:-9092}:9091"
+    volumes:
+      - milvus-data:/var/lib/milvus
+    command: ["milvus", "run", "standalone"]
+    depends_on:
+      etcd:
+        condition: service_healthy
+      minio-milvus:
+        condition: service_healthy
+    networks:
+      - ai-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9091/healthz"]
+      interval: 30s
+      start_period: 90s
+      timeout: 20s
+      retries: 3
+
+  # Attu - Milvus GUI
+  attu:
+    image: zilliz/attu:latest
+    container_name: ai-attu
+    env_file:
+      - .env
+    environment:
+      - MILVUS_URL=milvus:19530
+    ports:
+      - "${ATTU_PORT:-8081}:3000"
+    depends_on:
+      milvus:
+        condition: service_healthy
+    networks:
+      - ai-network
+    restart: unless-stopped
+
+  # ============================================================
+  # Layer 3: Application (포트폴리오용)
+  # ============================================================
+
+  # Jina Reranker - 로컬 재랭킹 서버 (CPU fallback)
+  reranker:
+    build:
+      context: .
+      dockerfile: ./langchain_app/Dockerfile
+    container_name: ai-reranker
+    command: ["python", "api/reranker_jina.py"]
+    ports:
+      - "8001:8001"
+    networks:
+      - ai-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/docs"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s  # 모델 로딩 시간 고려
+
+  # Streamlit App - Groq API 기반 하이브리드 RAG 데모
+  streamlit-app:
+    build:
+      context: .
+      dockerfile: ./streamlit_app/Dockerfile
+    container_name: ai-streamlit-app
+    env_file:
+      - .env
+    environment:
+      # DB 연결 (Docker 내부)
+      - BIZ_POSTGRES_HOST=biz-postgres
+      - POSTGRES_HOST=biz-postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=${BIZ_POSTGRES_DB:-maple}
+      - POSTGRES_USER=${BIZ_POSTGRES_USER}
+      - POSTGRES_PASSWORD=${BIZ_POSTGRES_PASSWORD}
+
+      - MILVUS_HOST=milvus
+      - MILVUS_PORT=${MILVUS_PORT:-19530}
+      - MILVUS_COLLECTION_NAME=${MILVUS_COLLECTION_NAME}
+      - MILVUS_DIMENSION=${MILVUS_DIMENSION}
+
+      - NEO4J_HOST=neo4j
+      - NEO4J_URI=bolt://neo4j:7687
+      - NEO4J_BOLT_PORT=7687
+      - NEO4J_USER=${NEO4J_USER}
+      - NEO4J_PASSWORD=${NEO4J_PASSWORD}
+
+      - REDIS_HOST=redis
+      - REDIS_PORT=${REDIS_PORT}
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+
+      # Ollama 비활성화 (Groq만 사용)
+      - OLLAMA_BASE_URL=http://invalid-ollama:11434
+      - OLLAMA_MODEL=invalid-model
+
+      # Groq API (Answer Generator + Router 모두 사용)
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - GROQ_MODEL_NAME=${GROQ_MODEL_NAME}
+
+      # Reranker (Docker 내부 서비스)
+      - RERANKER_API_URL=http://reranker:8001/rerank
+
+      # Streamlit 설정
+      - STREAMLIT_SERVER_PORT=8501
+      - STREAMLIT_SERVER_ADDRESS=0.0.0.0
+      - STREAMLIT_SERVER_HEADLESS=true
+      - STREAMLIT_BROWSER_GATHER_USAGE_STATS=false
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./streamlit_app:/app/streamlit_app
+      - ./langchain_app:/app/langchain_app
+      - ./.env:/app/.env:ro
+    depends_on:
+      biz-postgres:
+        condition: service_healthy
+      neo4j:
+        condition: service_healthy
+      milvus:
+        condition: service_healthy
+      reranker:
+        condition: service_healthy
+    networks:
+      - ai-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  ai-network:
+    driver: bridge
+
+volumes:
+  biz-postgres-data:
+    driver: local
+  redis-data:
+    driver: local
+  neo4j-data:
+    driver: local
+  neo4j-logs:
+    driver: local
+  etcd-data:
+    driver: local
+  minio-milvus-data:
+    driver: local
+  milvus-data:
+    driver: local

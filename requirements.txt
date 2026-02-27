@@ -1,0 +1,95 @@
+# Nexon Maple-Agent Platform - 통합 의존성
+# langchain_app + streamlit_app 통합 버전
+
+# ============================================================
+# Core Framework
+# ============================================================
+# LangChain (최신 안정 버전)
+langchain>=0.3.0
+langchain-community>=0.3.0
+langchain-core>=0.3.0
+langgraph>=0.2.0
+
+# LLM Providers
+langchain-ollama>=0.2.0          # Ollama (로컬 LLM)
+langchain-groq>=0.1.0            # Groq API (Streamlit용)
+
+# ============================================================
+# Database & Storage
+# ============================================================
+# PostgreSQL
+psycopg2-binary>=2.9.9
+sqlalchemy>=2.0.25
+asyncpg>=0.29.0
+alembic>=1.13.0
+greenlet>=3.0.0
+
+# Vector Store
+pymilvus>=2.4.0
+
+# Graph Database
+neo4j>=5.16.0
+
+# Cache
+redis>=5.0.1
+
+# ============================================================
+# Web Framework
+# ============================================================
+# FastAPI (기존 API)
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+python-multipart>=0.0.12
+
+# Streamlit (데모 앱)
+streamlit>=1.30.0
+
+# ============================================================
+# ML & NLP
+# ============================================================
+# Embeddings
+sentence-transformers>=3.3.0
+torch>=2.5.0
+transformers<=4.46.0
+einops>=0.8.1
+
+# Korean NLP
+kiwipiepy>=0.18.0
+
+# ============================================================
+# Text Processing
+# ============================================================
+pypdf>=5.0.0
+python-docx>=1.1.0
+python-pptx>=1.0.0
+openpyxl>=3.1.2
+markdown>=3.7
+beautifulsoup4>=4.12.3
+lxml>=5.3.0
+
+# ============================================================
+# Utilities
+# ============================================================
+pydantic>=2.10.0
+pydantic-settings>=2.6.0
+email-validator>=2.1.0
+python-dotenv>=1.0.1
+aiofiles>=24.0.0
+httpx>=0.28.0
+tenacity>=9.0.0
+typing-extensions>=4.12.0
+nest-asyncio>=1.6.0
+
+# ============================================================
+# Monitoring & Logging
+# ============================================================
+langfuse>=3.12.0
+prometheus-client>=0.21.0
+
+# ============================================================
+# Development (선택사항)
+# ============================================================
+# pytest>=8.3.0
+# pytest-asyncio>=0.24.0
+# black>=24.10.0
+# ruff>=0.8.0

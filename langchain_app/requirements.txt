@@ -1,0 +1,79 @@
+# LangChain AI Platform - Python 의존성 (참고용)
+# 
+# ⚠️ 주의: 이 파일은 참고용입니다.
+# 실제로는 상위 디렉토리의 requirements.txt를 사용하세요.
+#
+# 설치 방법:
+#   cd ..  # taegyun_nexon_pj 디렉토리로 이동
+#   pip install -r requirements.txt
+
+# Core LangChain (최신 안정 버전)
+langchain>=0.3.0
+langchain-community>=0.3.0
+langchain-core>=0.3.0
+langgraph>=0.2.0
+
+# LLM Providers
+langchain-ollama>=0.2.0
+
+# Vector Stores
+pymilvus>=2.4.0
+
+# Database
+psycopg2-binary>=2.9.9
+sqlalchemy>=2.0.25
+asyncpg>=0.29.0
+alembic>=1.13.0  # DB 마이그레이션
+greenlet>=3.0.0  # SQLAlchemy async 지원
+
+# Graph Database
+neo4j>=5.16.0  # Neo4j Python Driver
+
+# Redis
+redis>=5.0.1
+
+# FastAPI
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+python-multipart>=0.0.12
+pydantic>=2.10.0
+pydantic-settings>=2.6.0
+email-validator>=2.1.0  # Pydantic 이메일 검증
+
+# Text Processing
+pypdf>=5.0.0
+python-docx>=1.1.0
+python-pptx>=1.0.0
+openpyxl>=3.1.2
+markdown>=3.7
+beautifulsoup4>=4.12.3
+lxml>=5.3.0
+
+# Korean NLP (형태소 분석)
+kiwipiepy>=0.18.0
+
+# Embeddings
+sentence-transformers>=3.3.0
+torch>=2.5.0
+transformers>=4.47.0
+
+# Utilities
+python-dotenv>=1.0.1
+aiofiles>=24.0.0
+httpx>=0.28.0
+tenacity>=9.0.0
+typing-extensions>=4.12.0  # 타입 힌팅 지원
+
+# Authentication (선택사항, 향후 User 인증 구현 시)
+# python-jose[cryptography]>=3.3.0  # JWT 토큰
+# passlib[bcrypt]>=1.7.4  # 비밀번호 해싱
+
+# Monitoring & Logging
+langfuse>=3.12.0  # Langfuse SDK (현재 최신: 3.12.0)
+prometheus-client>=0.21.0
+
+# Development (선택사항)
+# pytest>=8.3.0
+# pytest-asyncio>=0.24.0
+# black>=24.10.0
+# ruff>=0.8.0

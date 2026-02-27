@@ -1,0 +1,293 @@
+[
+  {
+    "id": 1,
+    "category": "class_change",
+    "query": "도적 전직 어디서 하나요?",
+    "ground_truth": ["도적", "전직", "다크로드", "커닝시티", "재즈바"],
+    "relevance": {
+      "도적": 3,
+      "전직": 3,
+      "다크로드": 3,
+      "커닝시티": 3,
+      "재즈바": 3
+    },
+    "expected_intent": "class_change"
+  },
+  {
+    "id": 2,
+    "category": "item_drop",
+    "query": "청바지는 누구 잡아야 나와?",
+    "ground_truth": ["청바지", "아이스진", "스포아"],
+    "relevance": {
+      "청바지": 3,
+      "스포아": 3,
+      "빅토리아 아일랜드 외곽": 2,
+      "아이스진": 3
+    },
+    "expected_intent": "item_drop"
+  },
+  {
+    "id": 3,
+    "category": "npc_info",
+    "query": "미나는 누구인가요?",
+    "ground_truth": ["미나"],
+    "relevance": {
+      "미나": 3,
+      "리스항구": 2,
+      "잡화점": 1
+    },
+    "expected_intent": "npc_service"
+  },
+  {
+    "id": 4,
+    "category": "map_npc",
+    "query": "커닝시티에는 어떤 엔피시들이 있나요?",
+    "ground_truth": ["커닝시티", "다크로드", "이카루스", "넬라", "소문난", "라케리스"],
+    "relevance": {
+      "커닝시티": 3,
+      "다크로드": 3,
+      "이카루스": 3,
+      "넬라": 3,
+      "소문난": 3,
+      "라케리스": 3
+    },
+    "expected_intent": "map_feature"
+  },
+  {
+    "id": 5,
+    "category": "monster_location",
+    "query": "스포아는 어디서 잡아?",
+    "ground_truth": ["스포아", "빅토리아 아일랜드 외곽"],
+    "relevance": {
+      "스포아": 3,
+      "빅토리아 아일랜드 외곽": 3
+    },
+    "expected_intent": "monster_location"
+  },
+  {
+    "id": 6,
+    "category": "item_purchase",
+    "query": "얼음바지 어디서 살 수 있어?",
+    "ground_truth": ["얼음바지", "리스항구", "리스항구 방어구상점", "미나"],
+    "relevance": {
+      "얼음바지": 3,
+      "아이스진": 3,
+      "리스항구 방어구상점": 3,
+      "미나": 3,
+      "리스항구": 2
+    },
+    "expected_intent": "item_purchase"
+  },
+  {
+    "id": 7,
+    "category": "npc_location",
+    "query": "다크로드는 어디 있어?",
+    "ground_truth": ["다크로드", "커닝시티", "재즈바"],
+    "relevance": {
+      "다크로드": 3,
+      "커닝시티": 3,
+      "재즈바": 2
+    },
+    "expected_intent": "npc_location"
+  },
+  {
+    "id": 8,
+    "category": "map_info",
+    "query": "엘리니아는 어떤 곳이야?",
+    "ground_truth": ["엘리니아", "마법사"],
+    "relevance": {
+      "엘리니아": 3,
+      "마법사": 2
+    },
+    "expected_intent": "map_feature"
+  },
+  {
+    "id": 9,
+    "category": "monster_info",
+    "query": "주황버섯 레벨이 몇이야?",
+    "ground_truth": ["주황버섯"],
+    "relevance": {
+      "주황버섯": 3,
+      "빅토리아 아일랜드 외곽": 1
+    },
+    "expected_intent": "monster_info"
+  },
+  {
+    "id": 10,
+    "category": "item_info",
+    "query": "얼음바지 능력치 알려줘",
+    "ground_truth": ["얼음바지", "아이스진", "능력치"],
+    "relevance": {
+      "얼음바지": 3,
+      "아이스진": 3,
+      "능력치": 3
+    },
+    "expected_intent": "item_info"
+  },
+  {
+    "id": 11,
+    "category": "hunting_ground",
+    "query": "도적 사냥터 추천해줘",
+    "ground_truth": ["버려진 지하철", "개미굴"],
+    "relevance": {
+      "버려진 지하철": 3,
+      "개미굴": 3,
+      "도적": 2
+    },
+    "expected_intent": "hunting_ground"
+  },
+  {
+    "id": 12,
+    "category": "item_drop",
+    "query": "빨간 포션 떨구는 몹은?",
+    "ground_truth": ["빨간 포션", "스포아", "주황버섯"],
+    "relevance": {
+      "빨간 포션": 3,
+      "스포아": 3,
+      "주황버섯": 3
+    },
+    "expected_intent": "item_drop"
+  },
+  {
+    "id": 13,
+    "category": "class_change",
+    "query": "마법사 전직 담당 NPC는?",
+    "ground_truth": ["하인즈"],
+    "relevance": {
+      "하인즈": 3,
+      "엘리니아": 2
+    },
+    "expected_intent": "class_change"
+  },
+  {
+    "id": 14,
+    "category": "map_connection",
+    "query": "헤네시스에서 엘리니아 어떻게 가?",
+    "ground_truth": ["헤네시스", "엘리니아", "택시", "여섯갈래길"],
+    "relevance": {
+      "헤네시스": 3,
+      "엘리니아": 3,
+      "여섯갈래길": 2,
+      "택시": 2
+    },
+    "expected_intent": "map_location"
+  },
+  {
+    "id": 15,
+    "category": "npc_service",
+    "query": "창고는 어디서 이용해?",
+    "ground_truth": ["김서방", "리스항구"],
+    "relevance": {
+      "김서방": 3,
+      "리스항구": 3
+    },
+    "expected_intent": "npc_service"
+  },
+  {
+    "id": 16,
+    "category": "monster_location",
+    "query": "주황버섯 사냥터 어디야?",
+    "ground_truth": ["주황버섯", "빅토리아 아일랜드 외곽"],
+    "relevance": {
+      "주황버섯": 3,
+      "빅토리아 아일랜드 외곽": 3
+    },
+    "expected_intent": "monster_location"
+  },
+  {
+    "id": 17,
+    "category": "item_purchase",
+    "query": "물약 파는 NPC 알려줘",
+    "ground_truth": ["미나"],
+    "relevance": {
+      "미나": 3,
+      "물약": 3,
+      "리스항구": 2,
+      "빨간 포션": 2      
+    },
+    "expected_intent": "item_purchase"
+  },
+  {
+    "id": 18,
+    "category": "map_info",
+    "query": "개미굴은 어떤 맵이야?",
+    "ground_truth": ["슬리피우드", "개미굴"],
+    "relevance": {
+      "개미굴": 3,
+      "슬리피우드": 2
+    },
+    "expected_intent": "map_feature"
+  },
+  {
+    "id": 19,
+    "category": "complex",
+    "query": "도적으로 전직한 다음 어디서 사냥해야 될까?",
+    "ground_truth": ["도적", "여섯갈래길", "버려진 지하철"],
+    "relevance": {
+      "도적": 3,
+      "전직": 3,
+      "사냥": 3,
+      "여섯갈래길": 3,
+      "버려진 지하철": 3
+    },
+    "expected_intent": "class_change"
+  },
+  {
+    "id": 20,
+    "category": "item_relation",
+    "query": "청바지 구하는 방법 알려줘",
+    "ground_truth": ["청바지", "아이스진", "스포아", "리스항구 방어구상점"],
+    "relevance": {
+      "청바지": 3,
+      "아이스진": 3,
+      "스포아": 3,
+      "리스항구 방어구상점": 3,
+      "미나": 2
+    },
+    "expected_intent": "item_purchase"
+  },
+  {
+  "id": 21,
+  "category": "item_relation",
+  "query": "얼음바지 드랍하는 몬스터가 나오는 사냥터 어디야?",
+  "ground_truth": ["얼음바지", "아이스진", "스포아", "빅토리아 아일랜드 외곽", "풀숲"],
+  "relevance": {
+    "얼음바지": 3,
+    "아이스진": 3,
+    "스포아": 3,
+    "빅토리아 아일랜드 외곽": 3,
+    "달팽이": 1
+  },
+  "expected_intent": "item_drop"
+  },
+  {
+  "id": 22,
+  "category": "quest_relation",
+  "query": "도적 전직시켜주는 NPC는 어느 맵에 있어?",
+  "ground_truth": ["도적", "다크로드", "전직", "커닝시티", "재즈바"],
+  "relevance": {
+    "도적": 3,
+    "전직": 3,
+    "다크로드": 3,
+    "재즈바": 3,
+    "커닝시티": 2
+  },
+  "expected_intent": "class_change"
+  },
+  {
+  "id": 23,
+  "category": "item_relation",
+  "query": "얼음바지 파는 상인 있는 마을 어떻게 가?",
+  "ground_truth": ["얼음바지", "아이스진", "리스항구", "리스항구 방어구상점", "미나", "여섯갈래길"],
+  "relevance": {
+    "얼음바지": 3,
+    "아이스진": 3,
+    "미나": 3,
+    "리스항구": 3,
+    "리스항구 방어구상점": 3,
+    "여섯갈래길": 2,
+    "빅토리아 아일랜드": 1
+  },
+  "expected_intent": "item_purchase"
+  }
+]
