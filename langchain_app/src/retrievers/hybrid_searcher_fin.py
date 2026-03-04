@@ -193,15 +193,25 @@ class HybridSearcherFin:
         # 병렬 실행
         async def empty(): return []            # sentence 값 없으면 [] return / 코루틴 객체 반환해야 함. 리스트 객체면 awaitable이 아님. asyncti.gather는 약속된
 
-        pg_task = self._search_postgres_with_synonym(entities, limit_per_entity=5) if entities else empty()
         # ✅ Milvus: sentences가 없으면 전체 쿼리로 폴백 (LLM이 sentences를 못 뽑는 경우 대비)
         # hop >= 2이면 Neo4j가 답변 담당 → Milvus 폴백 불필요 (노이즈 방지)
         is_milvus_fallback = not bool(sentences)
         milvus_queries = sentences if sentences else [query]
-        use_milvus_now = self.use_milvus and not (is_milvus_fallback and hop >= 2)
-        milvus_task = self._search_milvus_sentences(milvus_queries) if use_milvus_now else empty()
 
-        pg_results, milvus_results = await asyncio.gather(pg_task, milvus_task)
+        if is_milvus_fallback:
+            # 폴백: PG 먼저 실행 → direct match 확인 → 없을 때만 Milvus 폴백
+            pg_results = await (self._search_postgres_with_synonym(entities, limit_per_entity=5) if entities else empty())
+            has_pg_direct = any(r.get("match_type") == "direct" for r in (pg_results or []))
+            skip_milvus_fallback = has_pg_direct or hop >= 2
+            if self.verbose and skip_milvus_fallback:
+                reason = "hop>=2" if hop >= 2 else "PG direct match"
+                print(f"   ⏭️  Milvus 폴백 스킵 ({reason})")
+            milvus_results = await (self._search_milvus_sentences(milvus_queries) if self.use_milvus and not skip_milvus_fallback else empty())
+        else:
+            # sentences 있음: PG + Milvus 병렬 실행
+            pg_task = self._search_postgres_with_synonym(entities, limit_per_entity=5) if entities else empty()
+            milvus_task = self._search_milvus_sentences(milvus_queries) if self.use_milvus else empty()
+            pg_results, milvus_results = await asyncio.gather(pg_task, milvus_task)
 
         # sources 필드 추가
         if isinstance(pg_results, list):
@@ -829,7 +839,7 @@ class HybridSearcherFin:
                 "top_n": min(top_n, len(texts))
             }
             
-            response = requests.post(reranker_url, json=payload, timeout=3)
+            response = requests.post(reranker_url, json=payload, timeout=10)
             
             if response.status_code != 200:
                 logger.warning(f"Reranker API 실패 (status {response.status_code}), RRF 결과 사용")
@@ -890,8 +900,12 @@ class HybridSearcherFin:
         all_results = []
         for sentence in sentences:
             try:
+                if self.verbose:
+                    print(f"   🔵 Milvus 검색: '{sentence}'")
                 results = await self.milvus_searcher.search(sentence, top_k=5)
-                
+                if self.verbose:
+                    print(f"   🔵 Milvus 결과: {len(results)}개")
+
                 # 결과 포맷팅
                 for result in results:
                     all_results.append({

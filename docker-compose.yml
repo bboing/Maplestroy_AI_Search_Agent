@@ -193,7 +193,7 @@ services:
     container_name: ai-reranker
     command: ["python", "api/reranker_jina.py"]
     ports:
-      - "8001:8001"
+      - "127.0.0.1:8001:8001"
     networks:
       - ai-network
     restart: unless-stopped
@@ -290,6 +290,8 @@ services:
       context: .
       dockerfile: ./streamlit_app/Dockerfile
     container_name: ai-streamlit-app
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     env_file:
       - .env
     environment:
@@ -316,11 +318,11 @@ services:
       - REDIS_PORT=${REDIS_PORT}
       - REDIS_PASSWORD=${REDIS_PASSWORD}
       
-      # Ollama 비활성화 (Groq만 사용)
-      - OLLAMA_BASE_URL=http://invalid-ollama:11434
-      - OLLAMA_MODEL=invalid-model
-      
-      # Groq API (Answer Generator + Router 모두 사용)
+      # Ollama (호스트에서 실행 중인 Ollama 우선, 실패 시 Groq fallback)
+      - OLLAMA_BASE_URL=http://host.docker.internal:11434
+      - OLLAMA_MODEL=${OLLAMA_MODEL:-llama3.1:8b}
+
+      # Groq API (Ollama 실패 시 fallback)
       - GROQ_API_KEY=${GROQ_API_KEY}
       - GROQ_MODEL_NAME=${GROQ_MODEL_NAME}
 
