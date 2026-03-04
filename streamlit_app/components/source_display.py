@@ -5,7 +5,7 @@ Source Display Component
 import streamlit as st
 
 
-def display_sources(sources: list, search_results: list, entities: list = None, sentences: list = None, query: str = ""):
+def display_sources(sources: list, search_results: list, entities: list = None, sentences: list = None, query: str = "", confidence: float = None):
     """
     검색 출처 및 결과 표시
 
@@ -15,11 +15,29 @@ def display_sources(sources: list, search_results: list, entities: list = None, 
         entities: Router가 추출한 키워드 (명사)
         sentences: Router가 추출한 문장 (동사구)
         query: 원본 사용자 쿼리
+        confidence: 최종 신뢰도 점수
     """
     with st.expander("🔍 답변 근거 (Retrieval Sources)", expanded=False):
         # 데이터 소스 표시
         st.markdown("#### 📊 사용된 데이터 소스")
-        cols = st.columns(len(sources) if sources else 1)
+        source_cols = st.columns((len(sources) + (1 if confidence is not None else 0)) or 1)
+
+        for idx, source in enumerate(sources):
+            with source_cols[idx]:
+                if source == "PostgreSQL":
+                    st.success(f"✅ {source}")
+                elif source == "Milvus":
+                    st.info(f"🔵 {source}")
+                elif source == "Neo4j":
+                    st.warning(f"🟡 {source}")
+                else:
+                    st.write(f"📁 {source}")
+
+        if confidence is not None:
+            with source_cols[len(sources)]:
+                st.metric("최종 신뢰도", f"{confidence:.1f}%")
+
+        cols = source_cols  # 하위 호환
         
         for idx, source in enumerate(sources):
             with cols[idx]:
@@ -88,7 +106,7 @@ def display_sources(sources: list, search_results: list, entities: list = None, 
                         st.caption(description)
                     
                     with col2:
-                        st.metric("점수", f"{score:.1f}", help=f"Match Type: {match_type}")
+                        st.metric("Reranker 점수", f"{score:.1f}", help=f"Match Type: {match_type}")
                 
                 if idx < len(search_results[:5]):
                     st.divider()

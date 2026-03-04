@@ -195,22 +195,26 @@ class HybridSearcherFin:
 
         pg_task = self._search_postgres_with_synonym(entities, limit_per_entity=5) if entities else empty()
         # ✅ Milvus: sentences가 없으면 전체 쿼리로 폴백 (LLM이 sentences를 못 뽑는 경우 대비)
+        is_milvus_fallback = not bool(sentences)
         milvus_queries = sentences if sentences else [query]
         milvus_task = self._search_milvus_sentences(milvus_queries) if self.use_milvus else empty()
 
         pg_results, milvus_results = await asyncio.gather(pg_task, milvus_task)
-        
+
         # sources 필드 추가
         if isinstance(pg_results, list):
             for result in pg_results:
                 if "sources" not in result:
                     result["sources"] = ["PostgreSQL"]
             results_by_source["PostgreSQL"] = pg_results
-        
+
         if isinstance(milvus_results, list):
             for result in milvus_results:
                 if "sources" not in result:
                     result["sources"] = ["Milvus"]
+                # 폴백 케이스(전체 쿼리로 검색)면 점수 패널티
+                if is_milvus_fallback:
+                    result["score"] = result.get("score", 0) * 0.5
             results_by_source["Milvus"] = milvus_results
         
         if self.verbose:
@@ -801,7 +805,9 @@ class HybridSearcherFin:
             for result in results:
                 data = result.get("data", {})
                 # print(f"여기서 오류 터짐 get data / results : {results}")
-                text = f"{data.get('canonical_name', '')} - {data.get('description', '')}"
+                import json
+                detail = json.dumps(data.get('detail_data', {}), ensure_ascii=False) if data.get('detail_data') else ''
+                text = f"{data.get('canonical_name', '')} - {data.get('description', '')} {detail}".strip()
                 texts.append(text)
             
             # Reranker API 호출

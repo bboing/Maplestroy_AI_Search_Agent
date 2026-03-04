@@ -29,6 +29,7 @@ def render_chat_interface(rag_service):
                     entities=message.get("entities", []),
                     sentences=message.get("sentences", []),
                     query=message.get("query", ""),
+                    confidence=message.get("confidence"),
                 )
     
     # 사용자 입력
@@ -62,6 +63,7 @@ def render_chat_interface(rag_service):
                         entities=result.get("entities", []),
                         sentences=result.get("sentences", []),
                         query=prompt,
+                        confidence=result.get("confidence"),
                     )
 
                     # 메시지 히스토리 저장
