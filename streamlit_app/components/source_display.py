@@ -37,19 +37,6 @@ def display_sources(sources: list, search_results: list, entities: list = None, 
             with source_cols[len(sources)]:
                 st.metric("최종 신뢰도", f"{confidence:.1f}%")
 
-        cols = source_cols  # 하위 호환
-        
-        for idx, source in enumerate(sources):
-            with cols[idx]:
-                if source == "PostgreSQL":
-                    st.success(f"✅ {source}")
-                elif source == "Milvus":
-                    st.info(f"🔵 {source}")
-                elif source == "Neo4j":
-                    st.warning(f"🟡 {source}")
-                else:
-                    st.write(f"📁 {source}")
-        
         st.divider()
 
         # 🔎 쿼리 분석 정보
