@@ -340,18 +340,19 @@ class AnswerGenerator:
     def _extract_sources(self, search_results: List[Dict[str, Any]]) -> List[str]:
         """
         검색 결과에서 출처 추출
+        - Neo4j 또는 Milvus가 최종 답변에 기여한 경우 PostgreSQL 제거
+          (PostgreSQL은 entity 해소 역할만 담당)
         """
-        sources = []
-        seen = set()
-        
+        all_sources = set()
         for result in search_results:
-            result_sources = result.get("sources", [])
-            for source in result_sources:
-                if source not in seen:
-                    sources.append(source)
-                    seen.add(source)
-        
-        return sources
+            for source in result.get("sources", []):
+                all_sources.add(source)
+
+        if "Neo4j" in all_sources or "Milvus" in all_sources:
+            all_sources.discard("PostgreSQL")
+
+        # 순서 보장: PostgreSQL → Milvus → Neo4j
+        return [s for s in ["PostgreSQL", "Milvus", "Neo4j"] if s in all_sources]
     
     def _calculate_confidence(self, search_results: List[Dict[str, Any]]) -> float:
         """

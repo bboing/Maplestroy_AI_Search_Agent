@@ -195,9 +195,11 @@ class HybridSearcherFin:
 
         pg_task = self._search_postgres_with_synonym(entities, limit_per_entity=5) if entities else empty()
         # ✅ Milvus: sentences가 없으면 전체 쿼리로 폴백 (LLM이 sentences를 못 뽑는 경우 대비)
+        # hop >= 2이면 Neo4j가 답변 담당 → Milvus 폴백 불필요 (노이즈 방지)
         is_milvus_fallback = not bool(sentences)
         milvus_queries = sentences if sentences else [query]
-        milvus_task = self._search_milvus_sentences(milvus_queries) if self.use_milvus else empty()
+        use_milvus_now = self.use_milvus and not (is_milvus_fallback and hop >= 2)
+        milvus_task = self._search_milvus_sentences(milvus_queries) if use_milvus_now else empty()
 
         pg_results, milvus_results = await asyncio.gather(pg_task, milvus_task)
 
@@ -212,9 +214,9 @@ class HybridSearcherFin:
             for result in milvus_results:
                 if "sources" not in result:
                     result["sources"] = ["Milvus"]
-                # 폴백 케이스(전체 쿼리로 검색)면 점수 패널티
+                # 폴백 케이스 플래그 추가 (reranker 후 캡핑에 사용)
                 if is_milvus_fallback:
-                    result["score"] = result.get("score", 0) * 0.5
+                    result["is_milvus_fallback"] = True
             results_by_source["Milvus"] = milvus_results
         
         if self.verbose:
@@ -253,9 +255,15 @@ class HybridSearcherFin:
         # Step 5: Reranker (결과 > limit일 때)
         if len(rrf_results) > limit:
             rrf_results = await self._rerank_with_jina(query, rrf_results, top_n=limit)
-            
+
             if self.verbose:
                 print(f"   ✅ Reranker 완료: {len(rrf_results)}개")
+
+        # 폴백 Milvus 결과 점수 캡핑 (최대 50점) - reranker 여부와 무관하게 항상 적용
+        for result in rrf_results:
+            if result.get("is_milvus_fallback"):
+                result["score"] = min(result.get("score", 0), 50.0)
+        rrf_results.sort(key=lambda x: x.get("score", 0), reverse=True)
         
         if self.verbose:
             print(f"   📊 최종: {len(rrf_results[:limit])}개\n")
@@ -768,7 +776,8 @@ class HybridSearcherFin:
                 "match_type": result.get("match_type", "rrf"),
                 "data": result.get("data"),
                 "sources": result.get("sources", []),
-                "rrf_score": rrf_score  # 원본 RRF 점수도 보존
+                "rrf_score": rrf_score,  # 원본 RRF 점수도 보존
+                "is_milvus_fallback": result.get("is_milvus_fallback", False)
             })
         
         return final_results
@@ -806,8 +815,11 @@ class HybridSearcherFin:
                 data = result.get("data", {})
                 # print(f"여기서 오류 터짐 get data / results : {results}")
                 import json
-                detail = json.dumps(data.get('detail_data', {}), ensure_ascii=False) if data.get('detail_data') else ''
-                text = f"{data.get('canonical_name', '')} - {data.get('description', '')} {detail}".strip()
+                if "Neo4j" in result.get("sources", []):
+                    text = data.get('description', data.get('canonical_name', ''))
+                else:
+                    detail = json.dumps(data.get('detail_data', {}), ensure_ascii=False) if data.get('detail_data') else ''
+                    text = f"{data.get('canonical_name', '')} - {data.get('description', '')} {detail}".strip()
                 texts.append(text)
             
             # Reranker API 호출
@@ -824,20 +836,32 @@ class HybridSearcherFin:
                 return results
             
             reranked_data = response.json()
-            
+
+            # Neo4j 혼합 점수 계산용 max_rrf
+            max_rrf = max((r.get("rrf_score", 0) for r in results), default=1.0) or 1.0
+
             # Reranker 결과에 따라 재정렬
             reranked_results = []
             for item in reranked_data.get("results", []):
                 index = item.get("index")
-                # print(f"여기서 오류 터짐 get index / results : {results}")
                 score = item.get("score", 0)
-                
+
                 if index < len(results):
                     result = results[index].copy()
                     result["rerank_score"] = score
-                    result["score"] = score * 100  # 0-100 스케일
+                    reranker_score = score * 100  # 0-100 스케일
+
+                    # Neo4j 결과: RRF 60% + Reranker 40% 혼합
+                    if "Neo4j" in result.get("sources", []):
+                        rrf_normalized = (result.get("rrf_score", 0) / max_rrf) * 100
+                        result["score"] = reranker_score * 0.4 + rrf_normalized * 0.6
+                        result["score_type"] = "hybrid"
+                    else:
+                        result["score"] = reranker_score
+                        result["score_type"] = "reranker"
+
                     reranked_results.append(result)
-            
+
             return reranked_results
             
         except requests.exceptions.Timeout:

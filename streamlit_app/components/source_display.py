@@ -93,7 +93,9 @@ def display_sources(sources: list, search_results: list, entities: list = None, 
                         st.caption(description)
                     
                     with col2:
-                        st.metric("Reranker 점수", f"{score:.1f}", help=f"Match Type: {match_type}")
+                        score_type = result.get("score_type", "reranker")
+                        score_label = "혼합 점수 (RRF+Reranker)" if score_type == "hybrid" else "Reranker 점수"
+                        st.metric(score_label, f"{score:.1f}", help=f"Match Type: {match_type}")
                 
                 if idx < len(search_results[:5]):
                     st.divider()
